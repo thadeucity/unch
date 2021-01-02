@@ -165,7 +165,7 @@ export const unshift = <T, U>(arr: T[], item: U): (T | U)[] => {
 };
 
 /**
- * imutPop
+ * immutablePop
  *
  * @desc Extract last item from array
  *
@@ -173,11 +173,11 @@ export const unshift = <T, U>(arr: T[], item: U): (T | U)[] => {
  * @return {Array}  [Last Array Item, Array without last element]
  * @example
  *   const originalArray =  ['one', 'two', 'three'];
- *   const popResults = imutPop(originalArray);
+ *   const popResults = immutablePop(originalArray);
  *   // Expect: originalArray == ['one', 'two', 'three']
  *   // Expect: popResults == ['three', ['one', 'two']]
  */
-export const imutPop = <T>(arr: T[]): [T, T[]] => {
+export const immutablePop = <T>(arr: T[]): [T, T[]] => {
   const unlinkedArr = clone(arr);
   return [
     unlinkedArr[unlinkedArr.length - 1],
@@ -186,7 +186,7 @@ export const imutPop = <T>(arr: T[]): [T, T[]] => {
 };
 
 /**
- * imutShift
+ * immutableShift
  *
  * @desc Extract first item from array
  *
@@ -194,11 +194,11 @@ export const imutPop = <T>(arr: T[]): [T, T[]] => {
  * @return {Array}  [First Array Item, Array without first element]
  * @example
  *   const originalArray =  ['one', 'two', 'three'];
- *   const shiftResults = imutShift(originalArray);
+ *   const shiftResults = immutableShift(originalArray);
  *   // Expect: originalArray == ['one', 'two', 'three']
  *   // Expect: shiftResults == ['one', ['two', 'three']]
  */
-export const imutShift = <T>(arr: T[]): [T, T[]] => {
+export const immutableShift = <T>(arr: T[]): [T, T[]] => {
   const unlinkedArr = clone(arr);
   return [unlinkedArr[0], unlinkedArr.slice(1)];
 };
