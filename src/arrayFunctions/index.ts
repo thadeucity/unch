@@ -1,4 +1,5 @@
 import rfdc from 'rfdc';
+
 const clone = rfdc();
 
 /**
@@ -246,70 +247,4 @@ export const reverse = <T>(arr: T[]): T[] => {
     workArr[right] = temporary;
   }
   return workArr;
-};
-
-/**
- * intersection
- *
- * @desc Return intersection between arrays
- *
- * @param {Array} arr1 - First Array
- * @param {Array} arr2 - Second Array
- * @return {Array}  Intersection Between Arrays
- * @example
- *   const originalArr1 = ['one', 'two', 'three'];
- *   const originalArr2 = ['two', 'three', 'four', 'five'];
- *   const intersectionArray = intersection(originalArr1, originalArr2);
- *   // Expect: intersectionArray == ['two', 'three']
- *   // Expect: originalArr1 == ['one', 'two', 'three']
- *   // Expect: originalArr2 == ['two', 'three', 'four', 'five']
- */
-export const intersection = <T, U>(arr1: T[], arr2: (T | U)[]): T[] => {
-  const unlinkedArr = clone(arr1);
-  return unlinkedArr.filter((el) => arr2.includes(el));
-};
-
-/**
- * difference
- *
- * @desc Return difference between arrays
- *
- * @param {Array} arr1 - First Array
- * @param {Array} arr2 - Second Array
- * @return {Array}  Difference Between Arrays
- * @example
- *   const originalArr1 = ['one', 'two', 'three'];
- *   const originalArr2 = ['two', 'three', 'four', 'five'];
- *   const differenceArray = difference(originalArr1, originalArr2);
- *   // Expect: differenceArray == ['one']
- *   // Expect: originalArr1 == ['one', 'two', 'three']
- *   // Expect: originalArr2 == ['two', 'three', 'four', 'five']
- */
-export const difference = <T, U>(arr1: T[], arr2: (T | U)[]): T[] => {
-  const unlinkedArr = clone(arr1);
-  return unlinkedArr.filter((el) => !arr2.includes(el));
-};
-
-/**
- * symmetricDifference
- *
- * @desc Return symetric difference between arrays
- *
- * @param {Array} arr1 - First Array
- * @param {Array} arr2 - Second Array
- * @return {Array}  Symmetric Difference Between Arrays
- * @example
- *   const originalArr1 = ['one', 'two', 'three'];
- *   const originalArr2 = ['two', 'three', 'four', 'five'];
- *   const differenceArray = symmetricDifference(originalArr1, originalArr2);
- *   // Expect: differenceArray == ['one', 'four', 'five']
- *   // Expect: originalArr1 == ['one', 'two', 'three']
- *   // Expect: originalArr2 == ['two', 'three', 'four', 'five']
- */
-export const symmetricDifference = <T>(arr1: T[], arr2: T[]): T[] => {
-  const unlinkedArr1 = clone(arr1);
-  const unlinkedArr2 = clone(arr2);
-  return unlinkedArr1
-    .filter((x) => !unlinkedArr2.includes(x))
-    .concat(unlinkedArr2.filter((x) => !unlinkedArr1.includes(x)));
 };
