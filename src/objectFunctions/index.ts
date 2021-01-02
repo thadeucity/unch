@@ -1,5 +1,5 @@
-import { Subtract } from "../utils/helperTypes";
-import rfdc from "rfdc";
+import rfdc from 'rfdc';
+import { Subtract } from '../utils/helperTypes';
 
 const clone = rfdc();
 
@@ -55,8 +55,8 @@ const clone = rfdc();
  *        ]
  *      }
  */
-export const cloneObject = <T>(arr: T[]): T[] => {
-  return clone(arr);
+export const cloneObject = <T>(obj: T): T => {
+  return clone(obj);
 };
 
 /**
@@ -99,9 +99,9 @@ export const updateObj = <T>(obj: T, fieldsToUpdate: Partial<T>): T => {
  *   // Expect: originalObject == {name: "John Doe", age: 30}
  *   // Expect: updatedObject == {name: "John Doe", age: 30, isDeveloper: true}
  */
-export const assignObj = <T, S extends {}>(
+export const assignObj = <T, S extends Record<string, unknown>>(
   obj: T,
-  fieldsToAssign: S
+  fieldsToAssign: S,
 ): T & S => {
   return { ...clone(obj), ...clone(fieldsToAssign) };
 };
@@ -134,7 +134,7 @@ export const assignObj = <T, S extends {}>(
  */
 export const deleteObjKeys = <T, U extends keyof T>(
   obj: T,
-  removeKeys: Array<U>
+  removeKeys: Array<U>,
 ): Subtract<T, Record<U, any>> => {
   return Object.entries(clone(obj)).reduce((acc, current) => {
     const [key, value] = current as [U, any];
@@ -173,7 +173,7 @@ export const deleteObjKeys = <T, U extends keyof T>(
  */
 export const filterObjKeys = <T, U extends keyof T>(
   obj: T,
-  filterKeys: Array<U>
+  filterKeys: Array<U>,
 ): Pick<T, U> => {
   return Object.entries(clone(obj)).reduce((acc, current) => {
     const [key, value] = current as [U, any];
