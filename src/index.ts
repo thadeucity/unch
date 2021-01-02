@@ -1,20 +1,18 @@
 // Array Functions
 export {
   cloneArray,
-  difference,
-  imutPop,
-  imutShift,
+  immutablePop,
+  immutableShift,
   insert,
-  intersection,
   first,
   last,
   push,
   reverse,
   sort,
   spliceInsert,
-  symmetricDifference,
+  spliceExtract,
   unshift,
-} from "./arrayFunctions";
+} from './arrayFunctions';
 
 // Object Functions
 export {
@@ -23,4 +21,4 @@ export {
   updateObj,
   filterObjKeys,
   deleteObjKeys,
-} from "./objectFunctions";
+} from './objectFunctions';
