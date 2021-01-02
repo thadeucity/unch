@@ -1,0 +1,31 @@
+{
+  "name": "unch",
+  "version": "0.1.0",
+  "author": "Victor Alvarenga",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib",
+  "description": "Javascript Utilities to handle arrays and objects with immutability in mind.",
+  "keywords": [
+    "immutability"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig-es5.json",
+    "start": "tsc -p . && node ./lib/index.js"
+  },
+  "dependencies": {
+    "rfdc": "^1.1.4"
+  },
+  "devDependencies": {
+    "@types/rfdc": "^1.1.0",
+    "typescript": "^4.1.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thadeucity/unch"
+  },
+  "bugs": {
+    "url": "https://github.com/thadeucity/imuta/unch"
+  },
+  "homepage": "https://github.com/thadeucity/unch"
+}
