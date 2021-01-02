@@ -1,4 +1,4 @@
-import rfdc from "rfdc";
+import rfdc from 'rfdc';
 const clone = rfdc();
 
 /**
@@ -28,7 +28,7 @@ export const cloneArray = <T>(arr: T[]): T[] => {
  *
  * @param {Array} arr - Initial Array
  * @param {number} start - Index where update starts
- * @param {?number} deleteCount - Idexes to delete
+ * @param {?number} deleteCount - Number of fields to delete
  * @param {...*} items - Items to Insert
  * @return {Array}  Updated Array
  * @example
