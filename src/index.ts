@@ -1,3 +1,9 @@
+/**
+ * @author Victor Alvarenga <git@victoralvarenga.com> (https://victoralvarenga.com)
+ * @copyright Copyright (c) 2021 Victor Alvarenga
+ * @license MIT
+ */
+
 // Array Functions
 export {
   cloneArray,
