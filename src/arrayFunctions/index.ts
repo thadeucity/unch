@@ -55,6 +55,29 @@ export const spliceInsert = <T, U>(
 };
 
 /**
+ * spliceExtract
+ *
+ * @desc Extract elements from an Array
+ *
+ * @param {Array} arr - Initial Array
+ * @param {number} start - Index where extraction starts
+ * @param {?number} extractCount - Number of fields to extract
+ * @return {Array}  Extracted Array
+ * @example
+ *   const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
+ *   const extractedWeekdays = spliceExtract(weekdays, 2, 2);
+ *   // Expect: weekdays == ['Sun', 'Mon', 'Tue', 'Wed', 'Thu']
+ *   // Expect: extractedWeekdays == ['Tue', 'Wed']
+ */
+export const spliceExtract = <T>(
+  arr: T[],
+  start: number,
+  extractCount: number,
+): T[] => {
+  return clone(arr).splice(start, extractCount);
+};
+
+/**
  * insert
  *
  * @desc Insert item into the specific index of an array
