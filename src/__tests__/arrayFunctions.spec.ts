@@ -331,7 +331,7 @@ describe('Test Array Functions', () => {
       originalArray[2].name = 'testChange';
 
       expect(lastElement).toStrictEqual({ name: 'John Doe', age: 30 });
-      expect(resultArray[2]).toStrictEqual([1, 2, 3]);
+      expect(resultArray).toStrictEqual(['a', [1, 2, 3]]);
     });
   });
 
@@ -356,13 +356,13 @@ describe('Test Array Functions', () => {
         'a',
         [1, 2, 3],
       ];
-      const [firstElement, resultArray] = immutablePop(originalArray);
+      const [firstElement, resultArray] = immutableShift(originalArray);
 
       originalArray[2][0] = 'testChange';
       originalArray[0].name = 'testChange';
 
       expect(firstElement).toStrictEqual({ name: 'John Doe', age: 30 });
-      expect(resultArray[2]).toStrictEqual([1, 2, 3]);
+      expect(resultArray[1]).toStrictEqual([1, 2, 3]);
     });
   });
 });
