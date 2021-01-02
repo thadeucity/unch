@@ -37,19 +37,19 @@ export const cloneArray = <T>(arr: T[]): T[] => {
  *   // Expect: weekdays == ['Sun', 'Mon', 'Wed', 'Thu']
  *   // Expect: updatedWeekdays == ['Sun', 'Mon', 'Tue', 'Wed', 'Thu']
  */
-export const spliceInsert = <T>(
+export const spliceInsert = <T, U>(
   arr: T[],
   start: number,
-  deleteCount: number = 0,
-  ...items: T[]
-): T[] => {
+  deleteCount?: number,
+  ...items: U[]
+): (T | U)[] => {
   const unlinkedArr = clone(arr);
   return [
     ...unlinkedArr.slice(0, start),
     ...items,
     ...unlinkedArr.slice(
-      start + deleteCount,
-      deleteCount ? unlinkedArr.length : start
+      start + (deleteCount || 0),
+      deleteCount !== undefined ? unlinkedArr.length : start,
     ),
   ];
 };
@@ -69,7 +69,7 @@ export const spliceInsert = <T>(
  *   // Expect: weekdays == ['Sun', 'Tue']
  *   // Expect: updatedWeekdays == ['Sun', 'Mon', 'Tue']
  */
-export const insert = <T>(arr: T[], index: number, item: T): T[] => {
+export const insert = <T, U>(arr: T[], index: number, item: U): (T | U)[] => {
   const unlinkedArr = clone(arr);
   return [...unlinkedArr.slice(0, index), item, ...unlinkedArr.slice(index)];
 };
@@ -118,7 +118,7 @@ export const first = <T>(arr: T[]): T => {
  *   // Expect: originalArray == ['This', 'lib', 'is']
  *   // Expect: updatedArray == ['This', 'lib', 'is', 'awesome']
  */
-export const push = <T>(arr: T[], item: T): T[] => {
+export const push = <T, U>(arr: T[], item: U): (T | U)[] => {
   const unlinkedArr = clone(arr);
   return [...unlinkedArr, item];
 };
@@ -137,7 +137,7 @@ export const push = <T>(arr: T[], item: T): T[] => {
  *   // Expect: originalArray == ['one', 'two', 'three']
  *   // Expect: updatedArray == ['zero', 'one', 'two', 'three']
  */
-export const unshift = <T>(arr: T[], item: T): T[] => {
+export const unshift = <T, U>(arr: T[], item: U): (T | U)[] => {
   return [item, ...clone(arr)];
 };
 
