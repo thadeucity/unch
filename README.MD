@@ -6,6 +6,14 @@ Collection of fast and lightweight utilities to handle arrays and objects with i
 
 [![Dependency Status](https://img.shields.io/david/thadeucity/unch.svg)](https://github.com/thadeucity/unch)
 
+  <a href="https://victoralvarenga.com">
+    <img alt="Made by Victor Alvarenga" src="https://img.shields.io/badge/made%20by-Victor Alvarenga-%23134F84">
+  </a>
+
+  <a href="LICENSE" >
+    <img alt="License" src="https://img.shields.io/badge/license-MIT-%23134F84">
+  </a>
+
 <hr/>
 
 ### **What's new?**
@@ -420,17 +428,18 @@ import { cloneObject } from 'unch';
 
 const originalObject = {
   name: 'John Doe',
-  age: 29
-  job: 'Developer'
+  age: 29,
+  job: 'Developer',
 };
 const clonedObject = cloneObject(originalObject);
 
 // Expect:
-  clonedObject == {
+clonedObject ==
+  {
     name: 'John Doe',
-    age: 29
-    job: 'Developer'
-  }
+    age: 29,
+    job: 'Developer',
+  };
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -454,23 +463,24 @@ import { assignObj } from 'unch';
 
 const originalObject = {
   name: 'John Doe',
-  age: 29
-  job: 'Developer'
+  age: 29,
+  job: 'Developer',
 };
 
 const updatedObject = assignObj(originalObject, {
   isAwesome: true,
-  favouriteFood: 'sushi'
+  favouriteFood: 'sushi',
 });
 
 // Expect:
-  updatedObject == {
+updatedObject ==
+  {
     name: 'John Doe',
-    age: 29
-    job: 'Developer'
+    age: 29,
+    job: 'Developer',
     isAwesome: true,
-    favouriteFood: 'sushi'
-  }
+    favouriteFood: 'sushi',
+  };
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -494,21 +504,22 @@ import { updateObj } from 'unch';
 
 const originalObject = {
   name: 'John Doe',
-  age: 29
-  job: 'Developer'
+  age: 29,
+  job: 'Developer',
 };
 
 const updatedObject = updateObj(originalObject, {
   age: 85,
-  job: 'Samurai'
+  job: 'Samurai',
 });
 
 // Expect:
-  updatedObject == {
+updatedObject ==
+  {
     name: 'John Doe',
-    age: 85
-    job: 'Samurai'
-  }
+    age: 85,
+    job: 'Samurai',
+  };
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -532,22 +543,20 @@ import { updateObj } from 'unch';
 
 const originalObject = {
   name: 'John Doe',
-  age: 29
-  job: 'Developer'
+  age: 29,
+  job: 'Developer',
   isAwesome: true,
-  favouriteFood: 'sushi'
+  favouriteFood: 'sushi',
 };
 
-const filteredObject = filterObjKeys(originalObject, [
-  'name',
-  'age',
-]);
+const filteredObject = filterObjKeys(originalObject, ['name', 'age']);
 
 // Expect:
-  filteredObject == {
+filteredObject ==
+  {
     name: 'John Doe',
-    age: 29
-  }
+    age: 29,
+  };
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -571,23 +580,21 @@ import { updateObj } from 'unch';
 
 const originalObject = {
   name: 'John Doe',
-  age: 29
-  job: 'Developer'
+  age: 29,
+  job: 'Developer',
   isAwesome: true,
-  favouriteFood: 'sushi'
+  favouriteFood: 'sushi',
 };
 
-const updatedObject = deleteObjKeys(originalObject, [
-  'name',
-  'age',
-]);
+const updatedObject = deleteObjKeys(originalObject, ['name', 'age']);
 
 // Expect:
-  updatedObject == {
-    job: 'Developer'
+updatedObject ==
+  {
+    job: 'Developer',
     isAwesome: true,
-    favouriteFood: 'sushi'
-  }
+    favouriteFood: 'sushi',
+  };
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -597,3 +604,7 @@ const updatedObject = deleteObjKeys(originalObject, [
 [MIT License](/LICENSE)
 
 Copyright (c) 2021 Victor Alvarenga <mailto:git@victoralvarenga.com> (https://victoralvarenga.com)
+
+---
+
+Made with ♥ by Victor Alvarenga :wave: [Get in touch!](https://www.linkedin.com/in/victoralvarenga/)
