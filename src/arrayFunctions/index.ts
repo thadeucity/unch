@@ -47,7 +47,7 @@ export const spliceInsert = <T, U>(
   const unlinkedArr = clone(arr);
   return [
     ...unlinkedArr.slice(0, start),
-    ...items,
+    ...clone([...items]),
     ...unlinkedArr.slice(
       start + (deleteCount || 0),
       deleteCount !== undefined ? unlinkedArr.length : start,
@@ -95,7 +95,11 @@ export const spliceExtract = <T>(
  */
 export const insert = <T, U>(arr: T[], index: number, item: U): (T | U)[] => {
   const unlinkedArr = clone(arr);
-  return [...unlinkedArr.slice(0, index), item, ...unlinkedArr.slice(index)];
+  return [
+    ...unlinkedArr.slice(0, index),
+    clone(item),
+    ...unlinkedArr.slice(index),
+  ];
 };
 
 /**
@@ -110,7 +114,7 @@ export const insert = <T, U>(arr: T[], index: number, item: U): (T | U)[] => {
  *   // Expect: lastDay == 'Sun'
  */
 export const last = <T>(arr: T[]): T => {
-  return arr[arr.length - 1];
+  return clone(arr[arr.length - 1]);
 };
 
 /**
@@ -125,7 +129,7 @@ export const last = <T>(arr: T[]): T => {
  *   // Expect: firstDay == 'Fri'
  */
 export const first = <T>(arr: T[]): T => {
-  return arr[0];
+  return clone(arr[0]);
 };
 
 /**
@@ -143,8 +147,7 @@ export const first = <T>(arr: T[]): T => {
  *   // Expect: updatedArray == ['This', 'lib', 'is', 'awesome']
  */
 export const push = <T, U>(arr: T[], item: U): (T | U)[] => {
-  const unlinkedArr = clone(arr);
-  return [...unlinkedArr, item];
+  return [...clone(arr), clone(item)];
 };
 
 /**
@@ -162,7 +165,7 @@ export const push = <T, U>(arr: T[], item: U): (T | U)[] => {
  *   // Expect: updatedArray == ['zero', 'one', 'two', 'three']
  */
 export const unshift = <T, U>(arr: T[], item: U): (T | U)[] => {
-  return [item, ...clone(arr)];
+  return [clone(item), ...clone(arr)];
 };
 
 /**
@@ -218,8 +221,7 @@ export const immutableShift = <T>(arr: T[]): [T, T[]] => {
  *   // Expect: sortedArray == [3, 4, 7, 15, 22, 30]
  */
 export const sort = <T>(arr: T[], compareFn?: (a: T, b: T) => number): T[] => {
-  const unlinkedArr = clone(arr);
-  return unlinkedArr.slice().sort(compareFn);
+  return clone(arr).sort(compareFn);
 };
 
 /**

@@ -48,6 +48,16 @@ describe('Test Array Functions', () => {
 
       expect(firstItem).toBe('a');
     });
+
+    it('should be able to return an unlinked item', () => {
+      const originalArray = [[1, 2, 3], 'a', 'b', 'c'];
+      const firstItem = first(originalArray);
+
+      (originalArray as any)[0][0] = 99;
+
+      expect(originalArray).toStrictEqual([[99, 2, 3], 'a', 'b', 'c']);
+      expect(firstItem).toStrictEqual([1, 2, 3]);
+    });
   });
 
   describe('> last', () => {
@@ -56,6 +66,16 @@ describe('Test Array Functions', () => {
       const lastItem = last(originalArray);
 
       expect(lastItem).toBe('d');
+    });
+
+    it('should be able to return an unlinked item', () => {
+      const originalArray = ['a', 'b', 'c', [1, 2, 3]];
+      const lastItem = last(originalArray);
+
+      (originalArray as any)[3][0] = 99;
+
+      expect(originalArray).toStrictEqual(['a', 'b', 'c', [99, 2, 3]]);
+      expect(lastItem).toStrictEqual([1, 2, 3]);
     });
   });
 
@@ -79,6 +99,18 @@ describe('Test Array Functions', () => {
       push(originalArray, 'Pushed Item');
 
       expect(originalArray).toStrictEqual(['a', 'b', 'c', 'd']);
+    });
+
+    it('should be able to unlink the original pushed item', () => {
+      const originalArray = ['a', 'b', 'c'];
+      const itemToPush = [1, 2, 3];
+      const updatedArray = push(originalArray, itemToPush);
+
+      itemToPush[0] = 99;
+
+      expect(originalArray).toStrictEqual(['a', 'b', 'c']);
+      expect(itemToPush).toStrictEqual([99, 2, 3]);
+      expect(updatedArray).toStrictEqual(['a', 'b', 'c', [1, 2, 3]]);
     });
 
     it('should be able to deeply clone an array', () => {
@@ -111,6 +143,18 @@ describe('Test Array Functions', () => {
       unshift(originalArray, 'Pushed Item');
 
       expect(originalArray).toStrictEqual(['a', 'b', 'c', 'd']);
+    });
+
+    it('should be able to unlink the original pushed item', () => {
+      const originalArray = ['a', 'b', 'c'];
+      const itemToPush = [1, 2, 3];
+      const updatedArray = unshift(originalArray, itemToPush);
+
+      itemToPush[0] = 99;
+
+      expect(originalArray).toStrictEqual(['a', 'b', 'c']);
+      expect(itemToPush).toStrictEqual([99, 2, 3]);
+      expect(updatedArray).toStrictEqual([[1, 2, 3], 'a', 'b', 'c']);
     });
 
     it('should be able to deeply clone an array', () => {
@@ -211,6 +255,16 @@ describe('Test Array Functions', () => {
       expect(originalArray).toStrictEqual(['d', 'x', 'a', 'c']);
     });
 
+    it('should be able to unlink the new input element', () => {
+      const originalArray = ['d', 'x', 'a', 'c'];
+      const inputElement = [1, 3, 4, 5];
+      const updatedArray = insert(originalArray, 0, inputElement);
+
+      inputElement[0] = 99;
+
+      expect(updatedArray[0]).toStrictEqual([1, 3, 4, 5]);
+    });
+
     it('should be able to deeply clone an array', () => {
       const originalArray: any[] = ['a', [1, 2, 3]];
       const updatedArray = insert(originalArray, 1, 'testInsert');
@@ -262,6 +316,26 @@ describe('Test Array Functions', () => {
       spliceInsert(originalArray, 2, 1, 'testImmutability');
 
       expect(originalArray).toStrictEqual(['d', 'x', 'a', 'c']);
+    });
+
+    it('should be able to unlink the original input elements', () => {
+      const originalArray = ['d', 'x', 'a', 'c'];
+      const firstNewElement = [1, 2, 3];
+      const secondNewElement = ['z', 'y', 'x'];
+
+      const updatedArray = spliceInsert<string, (string | number)[]>(
+        originalArray,
+        0,
+        0,
+        firstNewElement,
+        secondNewElement,
+      );
+
+      firstNewElement[0] = 99;
+      secondNewElement[0] = 'testChange';
+
+      expect(updatedArray[0]).toStrictEqual([1, 2, 3]);
+      expect(updatedArray[1]).toStrictEqual(['z', 'y', 'x']);
     });
 
     it('should be able to deeply clone an array', () => {
