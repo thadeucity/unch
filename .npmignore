@@ -1,0 +1,14 @@
+node_modules
+coverage
+src
+
+.editorconfig
+.eslintignore
+.eslintrc.json
+.gitignore
+
+jest.config.js
+prettier.config.js
+tsconfig-es5.json
+tsconfig.json
+yarn.lock

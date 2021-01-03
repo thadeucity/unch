@@ -1,6 +1,6 @@
-// Parts of code extracted from the utility-types lib from Piotr Witek https://github.com/piotrwitek/utility-types
-
 /*
+ * Parts of code extracted from the utility-types lib from Piotr Witek https://github.com/piotrwitek/utility-types
+ *
  * MIT License
  *
  * Copyright (c) 2016 Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)
