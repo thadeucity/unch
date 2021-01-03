@@ -62,7 +62,7 @@ export const spliceInsert = <T, U>(
  *
  * @param {Array} arr - Initial Array
  * @param {number} start - Index where extraction starts
- * @param {?number} extractCount - Number of fields to extract
+ * @param {number} extractCount - Number of fields to extract
  * @return {Array}  Extracted Array
  * @example
  *   const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
