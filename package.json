@@ -1,9 +1,10 @@
 {
   "name": "unch",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "author": "Victor Alvarenga",
   "license": "MIT",
   "main": "lib/index.js",
+  "module": "lib-es5/index.js",
   "types": "lib",
   "description": "Javascript Utilities to handle arrays and objects with immutability in mind.",
   "keywords": [
