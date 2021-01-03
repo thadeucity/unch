@@ -213,6 +213,7 @@ export const immutableShift = <T>(arr: T[]): [T, T[]] => {
  * @desc Sort Input Array
  *
  * @param {Array} arr - Input Array
+ * @param {?Function} compareFn - Compare Function
  * @return {Array}  Sorted Array
  * @example
  *   const originalArray =  [3, 15, 7, 30, 22, 4];
