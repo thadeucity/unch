@@ -1,6 +1,6 @@
 {
   "name": "unch",
-  "version": "0.1.2",
+  "version": "0.2.2",
   "author": "Victor Alvarenga",
   "license": "MIT",
   "main": "lib/index.js",
@@ -13,6 +13,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-es5.json",
     "start": "tsc -p . && node ./lib/index.js",
+    "benchmark": "ts-node src/__benchmark__/index.ts",
     "test": "jest"
   },
   "dependencies": {
