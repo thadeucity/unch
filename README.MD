@@ -126,6 +126,25 @@ const clonedArray = cloneArray(originalArray);
 // clonedArray == [1, 2, ['a', 'b', 'c']]
 ```
 
+```ts
+//Benchmarks
+
+// Short Arrays (length: 40, strings and numbers)
+Unch:   736,149 ops/sec ±0.83%
+Lodash: 288,672 ops/sec ±0.19%
+Ramda:   91,681 ops/sec ±1.32%
+
+// Long Arrays (length: 10k, strings and numbers)
+Unch:   3,092 ops/sec ±0.27%
+Lodash: 1,273 ops/sec ±0.33%
+Ramda:    418 ops/sec ±1.34%
+
+// Complex Arrays (length: 10k, strings, numbers, arrays and objects)
+Unch:   12.13 ops/sec ±5.67%
+Lodash:  5.75 ops/sec ±1.00%
+Ramda:   0.80 ops/sec ±8.54%
+```
+
 [⇧ back to top](#table-of-contents)
 
 ---
@@ -149,6 +168,15 @@ const firstElement = first(originalArray);
 // firstElement == 'a'
 ```
 
+```ts
+//Benchmarks
+
+// Arrays (length: 500, strings and numbers)
+Unch:   143,757,028 ops/sec ±0.20%
+Lodash:  15,619,036 ops/sec ±0.30%
+Ramda:    2,683,393 ops/sec ±0.93%
+```
+
 [⇧ back to top](#table-of-contents)
 
 ---
@@ -170,6 +198,15 @@ import { last } from 'unch';
 const originalArray = ['a', 'b', 'c'];
 const lastElement = last(originalArray);
 // lastElement == 'c'
+```
+
+```ts
+//Benchmarks
+
+// Arrays (length: 500, strings and numbers)
+Unch:   141,595,894 ops/sec ±0.21%
+Lodash:  15,602,697 ops/sec ±0.29%
+Ramda:    2,619,757 ops/sec ±0.82%
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -196,6 +233,20 @@ const updatedArray = push(originalArray, 'd');
 // updatedArray == ['a', 'b', 'c', 'd']
 ```
 
+```ts
+//Benchmarks
+
+// Simple Arrays (length: 500, strings and numbers)
+Unch:    53,178 ops/sec ±0.45%
+Lodash: 210,772 ops/sec ±0.31%
+Ramda:    7,479 ops/sec ±0.26%
+
+// Complex Arrays (length: 500, strings, numbers, arrays and objects)
+Unch:   1,241 ops/sec ±4.20%
+Lodash:   211 ops/sec ±0.25%
+Ramda:    259 ops/sec ±0.37%
+```
+
 [⇧ back to top](#table-of-contents)
 
 ---
@@ -218,6 +269,20 @@ import { unshift } from 'unch';
 const originalArray = ['a', 'b', 'c'];
 const updatedArray = unshift(originalArray, 99);
 // updatedArray == [99,'a', 'b', 'c']
+```
+
+```ts
+//Benchmarks
+
+// Simple Arrays (length: 500, strings and numbers)
+Unch:    55,394 ops/sec ±0.25%
+Lodash: 158,617 ops/sec ±0.36%
+Ramda:  659,278 ops/sec ±0.30%
+
+// Complex Arrays (length: 500, strings, numbers, arrays and objects)
+Unch:   1,176 ops/sec ±20.22%
+Lodash:   259 ops/sec ±00.91%
+Ramda:    207 ops/sec ±00.40%
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -248,6 +313,10 @@ const [lastItem, remainingArray] = immutablePop(originalArray);
 // remainingArray == ['a', 'b', 'c', 'd']
 ```
 
+```ts
+//Benchmarks (no equivalents)
+```
+
 [⇧ back to top](#table-of-contents)
 
 ---
@@ -274,6 +343,10 @@ const originalArray = ['a', 'b', 'c', 'd', 'e'];
 const [firstItem, remainingArray] = immutableShift(originalArray);
 // firstItem == ['a']
 // remainingArray == ['b', 'c', 'd', 'e']
+```
+
+```ts
+//Benchmarks (no equivalents)
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -304,6 +377,19 @@ const sortedNumericArray = sort(numericArray, (a, b) => a - b);
 // sortedNumericArray = [3, 17, 42, 45, 118, 1000]
 ```
 
+```ts
+//Benchmarks
+
+// Simple Arrays (length: 500, strings and numbers)
+Unch:    5,906 ops/sec ±0.27%
+Lodash: 15,414 ops/sec ±0.38%
+Ramda:   7,247 ops/sec ±0.22%
+
+// Complex Arrays (length: 500, strings, numbers, arrays and objects)
+Unch:  6,194 ops/sec ±0.21%
+Ramda:   586 ops/sec ±0.23%
+```
+
 [⇧ back to top](#table-of-contents)
 
 ---
@@ -325,6 +411,20 @@ import { reverse } from 'unch';
 const originalArray = [1, 2, 3, 4, 5];
 const reversedArray = reverse(originalArray);
 // reversedArray == [5, 4, 3, 2, 1]
+```
+
+```ts
+//Benchmarks
+
+// Simple Arrays (length: 500, strings and numbers)
+Unch:   65,108 ops/sec ±0.27%
+Lodash: 28,195 ops/sec ±0.29%
+Ramda:  30,548 ops/sec ±0.29%
+
+// Complex Arrays (length: 500, strings, numbers, arrays and objects)
+Unch:   1,137 ops/sec ±19.81%
+Lodash:   259 ops/sec ±00.41%
+Ramda:    214 ops/sec ±00.20%
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -351,6 +451,10 @@ const originalArray = [1, 2, 3, 4, 5, 6, 7];
 
 const extractedArray = spliceExtract(originalArray, 2, 3);
 // extractedArray == [3, 4, 5]
+```
+
+```ts
+//Benchmarks (no equivalents)
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -380,6 +484,10 @@ const updatedArray = spliceInsert(originalArray, 2, 3, 88, 99);
 // updatedArray == [1, 2, 88, 99, 6, 7]
 ```
 
+```ts
+//Benchmarks (no equivalents)
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `insert`
@@ -402,6 +510,20 @@ const originalArray = [1, 2, 3, 4];
 
 const updatedArray = spliceInsert(originalArray, 1, 'New Item');
 // updatedArray == [1, 'New Item', 2, 3, 4]
+```
+
+```ts
+//Benchmarks
+
+// Simple Arrays (length: 500, strings and numbers)
+Unch:    53,578 ops/sec ±0.20%
+Lodash: 147,826 ops/sec ±0.33%
+Ramda:    7,752 ops/sec ±0.31%
+
+// Complex Arrays (length: 500, strings, numbers, arrays and objects)
+Unch:   1,218 ops/sec ±20.43%
+Lodash:   259 ops/sec ±00.71%
+Ramda:    208 ops/sec ±00.50%
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -440,6 +562,14 @@ clonedObject ==
     age: 29,
     job: 'Developer',
   };
+```
+
+```ts
+//Benchmarks
+
+Unch:   159,130 ops/sec ±0.27%
+Lodash:  33,683 ops/sec ±1.11%
+Ramda:   21,111 ops/sec ±0.96%
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -483,6 +613,13 @@ updatedObject ==
   };
 ```
 
+```ts
+//Benchmarks
+
+Unch:   148,622 ops/sec ±0.26%
+Lodash:  33,692 ops/sec ±0.39%
+```
+
 [⇧ back to top](#table-of-contents)
 
 ---
@@ -522,6 +659,14 @@ updatedObject ==
   };
 ```
 
+```ts
+//Benchmarks
+
+Unch:   150,946 ops/sec ±0.24%
+Lodash:  20,931 ops/sec ±0.40%
+Ramda:   33,662 ops/sec ±0.45%
+```
+
 [⇧ back to top](#table-of-contents)
 
 ---
@@ -557,6 +702,10 @@ filteredObject ==
     name: 'John Doe',
     age: 29,
   };
+```
+
+```ts
+//Benchmarks (no equivalents)
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -595,6 +744,10 @@ updatedObject ==
     isAwesome: true,
     favouriteFood: 'sushi',
   };
+```
+
+```ts
+//Benchmarks (no equivalents)
 ```
 
 [⇧ back to top](#table-of-contents)
