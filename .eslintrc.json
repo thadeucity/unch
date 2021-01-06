@@ -22,6 +22,7 @@
     "rules": {
       "prettier/prettier": "error",
       "no-use-before-define": "warn",
+      "import/no-extraneous-dependencies": "warn",
       "import/extensions": [
         "error",
         "ignorePackages",
