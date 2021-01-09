@@ -18,7 +18,7 @@ Collection of fast and lightweight utilities to handle arrays and objects with i
 
 ### **What's new?**
 
-:tada: _Full test coverage with [Jest](https://jestjs.io/)_ :tada:
+:tada: [_compact function for arrays_](#compact) :tada:
 
 <hr/><br/>
 
