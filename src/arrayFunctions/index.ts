@@ -251,3 +251,20 @@ export const reverse = <T>(arr: T[]): T[] => {
   }
   return workArr;
 };
+
+/**
+ * compact
+ *
+ * @desc Remove all top level falsey values of input Array
+ *
+ * @param {Array} arr - Input Array
+ * @return {Array}  Compacted Array
+ * @example
+ *   const originalArray = [0, 1, null, "test", "", 3, undefined, 3, ,4];
+ *   const compactedArray = compact(originalArray);
+ *   // Expect: originalArray == [0, 1, null, "test", "", 3, undefined, 3, ,4]
+ *   // Expect: compactedArray == [1, "test", 3, 3, 4]
+ */
+export const compact = <T>(arr: T[]): T[] => {
+  return clone(arr).filter(el => el);
+};
