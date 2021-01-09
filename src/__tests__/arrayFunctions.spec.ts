@@ -7,6 +7,7 @@ import {
   sort,
   reverse,
   insert,
+  compact,
   spliceInsert,
   spliceExtract,
   immutablePop,
@@ -272,6 +273,41 @@ describe('Test Array Functions', () => {
       originalArray[1][0] = 'testChange';
 
       expect(updatedArray[2]).not.toStrictEqual(originalArray[1]);
+    });
+  });
+
+  describe('> compact', () => {
+    it('should be able to remove all falsey values from array', () => {
+      const originalArray = [0, 1, null, 'test', '', 3, undefined, 3, 4];
+      const compactedArray = compact(originalArray);
+
+      expect(compactedArray).toStrictEqual([1, 'test', 3, 3, 4]);
+    });
+
+    it('should not be able to change the original array', () => {
+      const originalArray = [0, 1, null, 'test', '', 3, undefined, 3, 4];
+      compact(originalArray);
+
+      expect(originalArray).toStrictEqual([
+        0,
+        1,
+        null,
+        'test',
+        '',
+        3,
+        undefined,
+        3,
+        4,
+      ]);
+    });
+
+    it('should be able to deeply clone an array', () => {
+      const originalArray: any[] = ['a', [1, 2, 3]];
+      const compactedArray = compact(originalArray);
+
+      originalArray[1][0] = 'testChange';
+
+      expect(compactedArray[1][0]).not.toBe('testChange');
     });
   });
 

@@ -87,6 +87,7 @@ I am open for contributions. If you're planning to contribute please make sure t
 - [`immutableShift`](#immutableShift)
 - [`sort`](#sort)
 - [`reverse`](#reverse)
+- [`compact`](#compact)
 - [`spliceExtract`](#spliceExtract)
 - [`spliceInsert`](#spliceInsert)
 - [`insert`](#insert)
@@ -425,6 +426,43 @@ Ramda:  30,548 ops/sec ±0.29%
 Unch:   1,137 ops/sec ±19.81%
 Lodash:   259 ops/sec ±00.41%
 Ramda:    214 ops/sec ±00.20%
+```
+
+[⇧ back to top](#table-of-contents)
+
+---
+
+### `compact`
+
+Remove all top level falsey values of input Array.
+
+```ts
+params:
+  arr: Array<T>  // Initial Array
+
+return: Array<T> // Compacted Array
+```
+
+```ts
+import { compact } from 'unch';
+
+const originalArray = [0, 1, null, 'test', '', 3, undefined, 3, 4];
+const reversedArray = reverse(originalArray);
+// reversedArray == [1, 'test', 3, 3, 4]
+```
+
+```ts
+//Benchmarks
+
+// Simple Arrays (length: 500, strings and numbers)
+Unch:    61,741 ops/sec ±1.12%
+Lodash: 175,928 ops/sec ±0.25%
+Ramda:  293,750 ops/sec ±1.75%
+
+// Complex Arrays (length: 500, strings, numbers, arrays and objects)
+Unch:   2,240 ops/sec ±1.84%
+Lodash:   263 ops/sec ±0.30%
+Ramda:    166 ops/sec ±0.30%
 ```
 
 [⇧ back to top](#table-of-contents)

@@ -21,6 +21,7 @@ import {
   unshift,
   reverse,
   sort,
+  compact,
   immutablePop,
   immutableShift,
 } from '../arrayFunctions';
@@ -129,6 +130,35 @@ const runGetLastBenchmark = () => {
     .add('Lodash', () => {
       _.cloneDeep(_.last(randomArray));
     })
+    .on('cycle', (event: any) => {
+      console.log(String(event.target));
+    })
+    .run({ async: false });
+};
+
+const runCompactBenchmarks = () => {
+  console.log('\n\n-------------------------------------------------------');
+  console.log('ARRAY COMPACT ITEM BANCHMARKS');
+
+  console.log('\n Start Simple Compact');
+  const simpleCompactBenchmarks = new Benchmark.Suite();
+  const randomArray = generateRandomArray(500);
+  simpleCompactBenchmarks
+    .add('Unch', () => compact(randomArray))
+    .add('Ramda', () => R.filter(Boolean, randomArray))
+    .add('Lodash', () => _.compact(_.clone(randomArray)))
+    .on('cycle', (event: any) => {
+      console.log(String(event.target));
+    })
+    .run({ async: false });
+
+  console.log('\n Start Complex Compact');
+  const complexCompactBenchmarks = new Benchmark.Suite();
+  const randomComplexArray = generateRandomObjectArray(500);
+  complexCompactBenchmarks
+    .add('Unch', () => compact(randomComplexArray))
+    .add('Ramda', () => R.filter(Boolean, R.clone(randomComplexArray)))
+    .add('Lodash', () => _.compact(_.cloneDeep(randomComplexArray)))
     .on('cycle', (event: any) => {
       console.log(String(event.target));
     })
@@ -465,6 +495,7 @@ runCloneBenchmarks();
 runGetFirstBenchmark();
 runGetLastBenchmark();
 runPushBenchmarks();
+runCompactBenchmarks();
 runInsertBenchmarks();
 runUnshiftBenchmarks();
 runReverseBenchmarks();
