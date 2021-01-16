@@ -131,19 +131,19 @@ const clonedArray = cloneArray(originalArray);
 //Benchmarks
 
 // Short Arrays (length: 40, strings and numbers)
-Unch:   736,149 ops/sec ±0.83%
-Lodash: 288,672 ops/sec ±0.19%
-Ramda:   91,681 ops/sec ±1.32%
+Unch:   8,374,545 ops/sec ±1.26%
+Lodash:   276,857 ops/sec ±0.26%
+Ramda:     94,323 ops/sec ±1.51%
 
 // Long Arrays (length: 10k, strings and numbers)
-Unch:   3,092 ops/sec ±0.27%
-Lodash: 1,273 ops/sec ±0.33%
-Ramda:    418 ops/sec ±1.34%
+Unch:   40,533 ops/sec ±0.24%
+Lodash:  1,294 ops/sec ±1.75%
+Ramda:     420 ops/sec ±0.26%
 
 // Complex Arrays (length: 10k, strings, numbers, arrays and objects)
-Unch:   12.13 ops/sec ±5.67%
-Lodash:  5.75 ops/sec ±1.00%
-Ramda:   0.80 ops/sec ±8.54%
+Unch:   13.50 ops/sec ±4.96%
+Lodash:  5.83 ops/sec ±1.00%
+Ramda:   0.80 ops/sec ±0.56%
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -173,7 +173,7 @@ const firstElement = first(originalArray);
 //Benchmarks
 
 // Arrays (length: 500, strings and numbers)
-Unch:   143,757,028 ops/sec ±0.20%
+Unch:   193,645,584 ops/sec ±0.39%
 Lodash:  15,619,036 ops/sec ±0.30%
 Ramda:    2,683,393 ops/sec ±0.93%
 ```
@@ -205,7 +205,7 @@ const lastElement = last(originalArray);
 //Benchmarks
 
 // Arrays (length: 500, strings and numbers)
-Unch:   141,595,894 ops/sec ±0.21%
+Unch:   176,999,379 ops/sec ±0.19%
 Lodash:  15,602,697 ops/sec ±0.29%
 Ramda:    2,619,757 ops/sec ±0.82%
 ```
@@ -238,14 +238,14 @@ const updatedArray = push(originalArray, 'd');
 //Benchmarks
 
 // Simple Arrays (length: 500, strings and numbers)
-Unch:    53,178 ops/sec ±0.45%
-Lodash: 210,772 ops/sec ±0.31%
-Ramda:    7,479 ops/sec ±0.26%
+Unch:   417,260 ops/sec ±0.33%
+Lodash: 219,018 ops/sec ±0.63%
+Ramda:  769,436 ops/sec ±2.10%
 
 // Complex Arrays (length: 500, strings, numbers, arrays and objects)
-Unch:   1,241 ops/sec ±4.20%
-Lodash:   211 ops/sec ±0.25%
-Ramda:    259 ops/sec ±0.37%
+Unch:   2,234 ops/sec ±2.08%
+Lodash:   261 ops/sec ±0.81%
+Ramda:    202 ops/sec ±0.50%
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -276,14 +276,14 @@ const updatedArray = unshift(originalArray, 99);
 //Benchmarks
 
 // Simple Arrays (length: 500, strings and numbers)
-Unch:    55,394 ops/sec ±0.25%
-Lodash: 158,617 ops/sec ±0.36%
-Ramda:  659,278 ops/sec ±0.30%
+Unch:   489,191 ops/sec ±0.25%
+Lodash: 188,554 ops/sec ±0.31%
+Ramda:  717,867 ops/sec ±2.02%
 
 // Complex Arrays (length: 500, strings, numbers, arrays and objects)
-Unch:   1,176 ops/sec ±20.22%
-Lodash:   259 ops/sec ±00.91%
-Ramda:    207 ops/sec ±00.40%
+Unch:   2,215 ops/sec ±0.26%
+Lodash:   264 ops/sec ±0.37%
+Ramda:    200 ops/sec ±1.12%
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -382,12 +382,12 @@ const sortedNumericArray = sort(numericArray, (a, b) => a - b);
 //Benchmarks
 
 // Simple Arrays (length: 500, strings and numbers)
-Unch:    5,906 ops/sec ±0.27%
+Unch:    7,012 ops/sec ±0.51%
 Lodash: 15,414 ops/sec ±0.38%
 Ramda:   7,247 ops/sec ±0.22%
 
 // Complex Arrays (length: 500, strings, numbers, arrays and objects)
-Unch:  6,194 ops/sec ±0.21%
+Unch:  4,568 ops/sec ±2.54%
 Ramda:   586 ops/sec ±0.23%
 ```
 
@@ -418,12 +418,12 @@ const reversedArray = reverse(originalArray);
 //Benchmarks
 
 // Simple Arrays (length: 500, strings and numbers)
-Unch:   65,108 ops/sec ±0.27%
-Lodash: 28,195 ops/sec ±0.29%
-Ramda:  30,548 ops/sec ±0.29%
+Unch:   540,601 ops/sec ±0.61%
+Lodash:  28,195 ops/sec ±0.29%
+Ramda:   30,548 ops/sec ±0.29%
 
 // Complex Arrays (length: 500, strings, numbers, arrays and objects)
-Unch:   1,137 ops/sec ±19.81%
+Unch:   1,222 ops/sec ±19.34%
 Lodash:   259 ops/sec ±00.41%
 Ramda:    214 ops/sec ±00.20%
 ```
@@ -455,14 +455,14 @@ const reversedArray = reverse(originalArray);
 //Benchmarks
 
 // Simple Arrays (length: 500, strings and numbers)
-Unch:    61,741 ops/sec ±1.12%
-Lodash: 175,928 ops/sec ±0.25%
-Ramda:  293,750 ops/sec ±1.75%
+Unch:   226,116 ops/sec ±0.69%
+Lodash: 173,346 ops/sec ±0.49%
+Ramda:  297,270 ops/sec ±1.69%
 
 // Complex Arrays (length: 500, strings, numbers, arrays and objects)
-Unch:   2,240 ops/sec ±1.84%
-Lodash:   263 ops/sec ±0.30%
-Ramda:    166 ops/sec ±0.30%
+Unch:   2,319 ops/sec ±1.68%
+Lodash:   262 ops/sec ±0.40%
+Ramda:    170 ops/sec ±0.28%
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -554,14 +554,14 @@ const updatedArray = spliceInsert(originalArray, 1, 'New Item');
 //Benchmarks
 
 // Simple Arrays (length: 500, strings and numbers)
-Unch:    53,578 ops/sec ±0.20%
-Lodash: 147,826 ops/sec ±0.33%
-Ramda:    7,752 ops/sec ±0.31%
+Unch:   421,675 ops/sec ±0.47%
+Lodash: 161,942 ops/sec ±0.56%
+Ramda:  718,233 ops/sec ±1.92%
 
 // Complex Arrays (length: 500, strings, numbers, arrays and objects)
-Unch:   1,218 ops/sec ±20.43%
-Lodash:   259 ops/sec ±00.71%
-Ramda:    208 ops/sec ±00.50%
+Unch:   2,295 ops/sec ±2.49%
+Lodash:   259 ops/sec ±0.71%
+Ramda:    208 ops/sec ±0.50%
 ```
 
 [⇧ back to top](#table-of-contents)

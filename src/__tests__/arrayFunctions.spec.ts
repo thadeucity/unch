@@ -39,6 +39,7 @@ describe('Test Array Functions', () => {
       originalArray[1][0] = 'testChange';
 
       expect(clonedArray).not.toStrictEqual(originalArray);
+      expect(clonedArray[1][0]).toBe(1);
     });
   });
 
