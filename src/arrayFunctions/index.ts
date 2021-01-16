@@ -1,5 +1,7 @@
 import rfdc from 'rfdc';
 
+import checkIsShallow from '../utils/checkIsShallow';
+
 const clone = rfdc();
 
 /**
@@ -17,7 +19,7 @@ const clone = rfdc();
  *   // Expect: clonedArray == ['change', 'two', 'three']
  */
 export const cloneArray = <T>(arr: T[]): T[] => {
-  return clone(arr);
+  return checkIsShallow(arr) ? arr.slice() : clone(arr);
 };
 
 /**
@@ -44,7 +46,7 @@ export const spliceInsert = <T, U>(
   deleteCount?: number,
   ...items: U[]
 ): (T | U)[] => {
-  const unlinkedArr = clone(arr);
+  const unlinkedArr = checkIsShallow(arr) ? arr.slice() : clone(arr);
   return [
     ...unlinkedArr.slice(0, start),
     ...clone([...items]),
@@ -75,7 +77,8 @@ export const spliceExtract = <T>(
   start: number,
   extractCount: number,
 ): T[] => {
-  return clone(arr).splice(start, extractCount);
+  const unlinkedArr = checkIsShallow(arr) ? arr.slice() : clone(arr);
+  return unlinkedArr.splice(start, extractCount);
 };
 
 /**
@@ -94,12 +97,9 @@ export const spliceExtract = <T>(
  *   // Expect: updatedWeekdays == ['Sun', 'Mon', 'Tue']
  */
 export const insert = <T, U>(arr: T[], index: number, item: U): (T | U)[] => {
-  const unlinkedArr = clone(arr);
-  return [
-    ...unlinkedArr.slice(0, index),
-    clone(item),
-    ...unlinkedArr.slice(index),
-  ];
+  const unlinkedArr: (T | U)[] = checkIsShallow(arr) ? arr.slice() : clone(arr);
+  unlinkedArr.splice(index, 0, clone(item));
+  return unlinkedArr;
 };
 
 /**
@@ -147,7 +147,11 @@ export const first = <T>(arr: T[]): T => {
  *   // Expect: updatedArray == ['This', 'lib', 'is', 'awesome']
  */
 export const push = <T, U>(arr: T[], item: U): (T | U)[] => {
-  return [...clone(arr), clone(item)];
+  const unlinkedArray: (T | U)[] = checkIsShallow(arr)
+    ? arr.slice()
+    : clone(arr);
+  unlinkedArray.push(clone(item));
+  return unlinkedArray;
 };
 
 /**
@@ -165,7 +169,11 @@ export const push = <T, U>(arr: T[], item: U): (T | U)[] => {
  *   // Expect: updatedArray == ['zero', 'one', 'two', 'three']
  */
 export const unshift = <T, U>(arr: T[], item: U): (T | U)[] => {
-  return [clone(item), ...clone(arr)];
+  const unlinkedArray: (T | U)[] = checkIsShallow(arr)
+    ? arr.slice()
+    : clone(arr);
+  unlinkedArray.unshift(clone(item));
+  return unlinkedArray;
 };
 
 /**
@@ -182,7 +190,7 @@ export const unshift = <T, U>(arr: T[], item: U): (T | U)[] => {
  *   // Expect: popResults == ['three', ['one', 'two']]
  */
 export const immutablePop = <T>(arr: T[]): [T, T[]] => {
-  const unlinkedArr = clone(arr);
+  const unlinkedArr = checkIsShallow(arr) ? arr.slice() : clone(arr);
   return [
     unlinkedArr[unlinkedArr.length - 1],
     unlinkedArr.slice(0, unlinkedArr.length - 1),
@@ -203,7 +211,7 @@ export const immutablePop = <T>(arr: T[]): [T, T[]] => {
  *   // Expect: shiftResults == ['one', ['two', 'three']]
  */
 export const immutableShift = <T>(arr: T[]): [T, T[]] => {
-  const unlinkedArr = clone(arr);
+  const unlinkedArr = checkIsShallow(arr) ? arr.slice() : clone(arr);
   return [unlinkedArr[0], unlinkedArr.slice(1)];
 };
 
@@ -222,7 +230,9 @@ export const immutableShift = <T>(arr: T[]): [T, T[]] => {
  *   // Expect: sortedArray == [3, 4, 7, 15, 22, 30]
  */
 export const sort = <T>(arr: T[], compareFn?: (a: T, b: T) => number): T[] => {
-  return clone(arr).sort(compareFn);
+  return checkIsShallow(arr)
+    ? arr.slice().sort(compareFn)
+    : clone(arr).sort(compareFn);
 };
 
 /**
@@ -239,7 +249,7 @@ export const sort = <T>(arr: T[], compareFn?: (a: T, b: T) => number): T[] => {
  *   // Expect: reversedArray == ['three', 'two', 'one']
  */
 export const reverse = <T>(arr: T[]): T[] => {
-  const workArr = clone(arr);
+  const workArr = checkIsShallow(arr) ? arr.slice() : clone(arr);
   for (
     let left = 0, right = workArr.length - 1;
     left < right;
@@ -266,5 +276,7 @@ export const reverse = <T>(arr: T[]): T[] => {
  *   // Expect: compactedArray == [1, "test", 3, 3, 4]
  */
 export const compact = <T>(arr: T[]): T[] => {
-  return clone(arr).filter(el => el);
+  return checkIsShallow(arr)
+    ? arr.slice().filter(el => el)
+    : clone(arr).filter(el => el);
 };

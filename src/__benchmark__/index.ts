@@ -175,7 +175,7 @@ const runPushBenchmarks = () => {
   simplePushBenchmarks
     .add('Unch', () => push(randomArray, 'Pushed Element'))
     .add('Ramda', () =>
-      R.insert(randomArray.length, 'Pushed Element', R.clone(randomArray)),
+      R.insert(randomArray.length, 'Pushed Element', randomArray),
     )
     .add('Lodash', () => _.clone([...randomArray, 'Pushed Element']))
     .on('cycle', (event: any) => {
@@ -214,7 +214,7 @@ const runInsertBenchmarks = () => {
   const randomArray = generateRandomArray(500);
   simpleInsertBenchmarks
     .add('Unch', () => insert(randomArray, 5, 'Pushed Element'))
-    .add('Ramda', () => R.insert(5, 'Pushed Element', R.clone(randomArray)))
+    .add('Ramda', () => R.insert(5, 'Pushed Element', randomArray))
     .add('Lodash', () => {
       _.clone([
         ...randomArray.slice(0, 5),
