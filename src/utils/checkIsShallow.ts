@@ -1,4 +1,4 @@
-const checkIsShallow = <T>(arr: T[]): boolean => {
+export const checkIsShallow = <T>(arr: T[]): boolean => {
   return arr.every(
     el =>
       typeof el === 'undefined' ||
@@ -7,5 +7,3 @@ const checkIsShallow = <T>(arr: T[]): boolean => {
       typeof el === 'string',
   );
 };
-
-export default checkIsShallow;

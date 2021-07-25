@@ -5,20 +5,18 @@
  */
 
 // Array Functions
-export {
-  cloneArray,
-  immutablePop,
-  immutableShift,
-  insert,
-  first,
-  last,
-  push,
-  reverse,
-  sort,
-  spliceInsert,
-  spliceExtract,
-  unshift,
-} from './arrayFunctions';
+export * from './arrayFunctions/cloneArray';
+export * from './arrayFunctions/compact';
+export * from './arrayFunctions/getFirst';
+export * from './arrayFunctions/getLast';
+export * from './arrayFunctions/insert';
+export * from './arrayFunctions/pop';
+export * from './arrayFunctions/push';
+export * from './arrayFunctions/reverse';
+export * from './arrayFunctions/shift';
+export * from './arrayFunctions/sort';
+export * from './arrayFunctions/splice';
+export * from './arrayFunctions/unshift';
 
 // Object Functions
 export {
