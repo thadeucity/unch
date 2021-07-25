@@ -18,7 +18,7 @@ Collection of fast and lightweight utilities to handle arrays and objects with i
 
 ### **What's new?**
 
-:tada: [_compact function for arrays_](#compact) :tada:
+:tada: First Major release - VERSION 1.0.0 :tada:
 
 <hr/><br/>
 
