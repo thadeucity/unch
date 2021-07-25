@@ -18,7 +18,7 @@ Collection of fast and lightweight utilities to handle arrays and objects with i
 
 ### **What's new?**
 
-:tada: [_compact function for arrays_](#compact) :tada:
+:tada: First Major release - VERSION 1.0.0 :tada:
 
 <hr/><br/>
 
@@ -79,17 +79,16 @@ I am open for contributions. If you're planning to contribute please make sure t
 ## Array Functions
 
 - [`cloneArray`](#cloneArray)
-- [`first`](#first)
-- [`last`](#last)
+- [`getFirst`](#getFirst)
+- [`getLast`](#getLast)
 - [`push`](#push)
 - [`unshift`](#unshift)
-- [`immutablePop`](#immutablePop)
-- [`immutableShift`](#immutableShift)
+- [`pop`](#pop)
+- [`shift`](#shift)
 - [`sort`](#sort)
 - [`reverse`](#reverse)
 - [`compact`](#compact)
-- [`spliceExtract`](#spliceExtract)
-- [`spliceInsert`](#spliceInsert)
+- [`splice`](#splice)
 - [`insert`](#insert)
 
 ---
@@ -112,13 +111,14 @@ I am open for contributions. If you're planning to contribute please make sure t
 
 Deep clone the input array.
 
+**Params:**
 ```ts
-params:
-  arr:  Array<T> // Initial Array
+   arr: Array<T> // Initial Array
 
 return: Array<T> // Cloned Array
 ```
 
+**Use:**
 ```ts
 import { cloneArray } from 'unch';
 
@@ -127,9 +127,8 @@ const clonedArray = cloneArray(originalArray);
 // clonedArray == [1, 2, ['a', 'b', 'c']]
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks
-
 // Short Arrays (length: 40, strings and numbers)
 Unch:   8,374,545 ops/sec ±1.26%
 Lodash:   276,857 ops/sec ±0.26%
@@ -150,28 +149,28 @@ Ramda:   0.80 ops/sec ±0.56%
 
 ---
 
-### `first`
+### `getFirst`
 
 Return the first element of an array.
 
+**Params:**
 ```ts
-params:
-  arr:  Array<T> // Initial Array
+   arr: Array<T> // Initial Array
 
 return: <T>      // First Element from Array
 ```
 
+**Use:**
 ```ts
-import { first } from 'unch';
+import { getFirst } from 'unch';
 
 const originalArray = ['a', 'b', 'c'];
 const firstElement = first(originalArray);
 // firstElement == 'a'
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks
-
 // Arrays (length: 500, strings and numbers)
 Unch:   193,645,584 ops/sec ±0.39%
 Lodash:  15,619,036 ops/sec ±0.30%
@@ -182,28 +181,28 @@ Ramda:    2,683,393 ops/sec ±0.93%
 
 ---
 
-### `last`
+### `getLast`
 
 Return the last element of an array.
 
+**Params:**
 ```ts
-params:
-  arr:  Array<T> // Initial Array
+   arr: Array<T> // Initial Array
 
 return: <T>      // Last Element from Array
 ```
 
+**Use:**
 ```ts
-import { last } from 'unch';
+import { getLast } from 'unch';
 
 const originalArray = ['a', 'b', 'c'];
 const lastElement = last(originalArray);
 // lastElement == 'c'
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks
-
 // Arrays (length: 500, strings and numbers)
 Unch:   176,999,379 ops/sec ±0.19%
 Lodash:  15,602,697 ops/sec ±0.29%
@@ -218,14 +217,15 @@ Ramda:    2,619,757 ops/sec ±0.82%
 
 Push a new item to the end of an array.
 
+**Params:**
 ```ts
-params:
-  arr:  Array<T>     // Initial Array
+   arr: Array<T>     // Initial Array
   item: <U>          // Item to insert
 
 return: Array<T | U> // Updated Array
 ```
 
+**Use:**
 ```ts
 import { push } from 'unch';
 
@@ -234,9 +234,8 @@ const updatedArray = push(originalArray, 'd');
 // updatedArray == ['a', 'b', 'c', 'd']
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks
-
 // Simple Arrays (length: 500, strings and numbers)
 Unch:   417,260 ops/sec ±0.33%
 Lodash: 219,018 ops/sec ±0.63%
@@ -256,14 +255,15 @@ Ramda:    202 ops/sec ±0.50%
 
 Push a new item to the start of an array.
 
+**Params:**
 ```ts
-params:
-  arr:  Array<T>     // Initial Array
+   arr: Array<T>     // Initial Array
   item: <U>          // Item to insert
 
 return: Array<T | U> // Updated Array
 ```
 
+**Use:**
 ```ts
 import { unshift } from 'unch';
 
@@ -272,9 +272,8 @@ const updatedArray = unshift(originalArray, 99);
 // updatedArray == [99,'a', 'b', 'c']
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks
-
 // Simple Arrays (length: 500, strings and numbers)
 Unch:   489,191 ops/sec ±0.25%
 Lodash: 188,554 ops/sec ±0.31%
@@ -290,20 +289,21 @@ Ramda:    200 ops/sec ±1.12%
 
 ---
 
-### `immutablePop`
+### `pop`
 
 Extract the last item from the array and returns a **Tuple** with the first element being the item and the second being the remaining array.
 
+**Params:**
 ```ts
-params:
-  arr: Array<T>   // Initial Array
+   arr: Array<T>   // Initial Array
 
 return: [
-  [0]: <T>,       // Last Item of Array
-  [1]: <T[]>      // Remaining Array
+  [0]: <T>,        // Last Item of Array
+  [1]: Array<T>    // Remaining Array
 ]
 ```
 
+**Use:**
 ```ts
 import { immutablePop } from 'unch';
 
@@ -314,40 +314,43 @@ const [lastItem, remainingArray] = immutablePop(originalArray);
 // remainingArray == ['a', 'b', 'c', 'd']
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks (no equivalents)
+(no equivalents)
 ```
 
 [⇧ back to top](#table-of-contents)
 
 ---
 
-### `immutableShift`
+### `shift`
 
 Extract the first item from the array and returns a **Tuple** with the first element being the item and the second being the remaining array.
 
+**Params:**
 ```ts
-params:
-  arr: Array<T>   // Initial Array
+   arr: Array<T>   // Initial Array
 
 return: [
-  [0]: <T>,       // First Item of Array
-  [1]: <T[]>      // Remaining Array
+  [0]: <T>,        // First Item of Array
+  [1]: Array<T>    // Remaining Array
 ]
 ```
 
+**Use:**
 ```ts
-import { immutableShift } from 'unch';
+import { shift } from 'unch';
 
 const originalArray = ['a', 'b', 'c', 'd', 'e'];
 
-const [firstItem, remainingArray] = immutableShift(originalArray);
+const [firstItem, remainingArray] = shift(originalArray);
 // firstItem == ['a']
 // remainingArray == ['b', 'c', 'd', 'e']
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks (no equivalents)
+(no equivalents)
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -358,14 +361,15 @@ const [firstItem, remainingArray] = immutableShift(originalArray);
 
 Sorts the elements of an array. Works the same way as the **[Vanilla JS Sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)** but doesn't change the original array.
 
+**Params:**
 ```ts
-params:
-  arr: Array<T>                           // Initial Array
-  compareFn?: (a: any, b: any) => number  // Compare function (optional)
+       arr: Array<T>                    // Initial Array
+compareFn?: (a: any, b: any) => number  // Compare function (optional)
 
-return: Array<T>                          // Sorted Array
+    return: Array<T>                    // Sorted Array
 ```
 
+**Use:**
 ```ts
 import { sort } from 'unch';
 
@@ -378,9 +382,8 @@ const sortedNumericArray = sort(numericArray, (a, b) => a - b);
 // sortedNumericArray = [3, 17, 42, 45, 118, 1000]
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks
-
 // Simple Arrays (length: 500, strings and numbers)
 Unch:    7,012 ops/sec ±0.51%
 Lodash: 15,414 ops/sec ±0.38%
@@ -399,13 +402,14 @@ Ramda:   586 ops/sec ±0.23%
 
 Reverse the input array.
 
+**Params:**
 ```ts
-params:
-  arr: Array<T>  // Initial Array
+   arr: Array<T> // Initial Array
 
 return: Array<T> // Reversed Array
 ```
 
+**Use:**
 ```ts
 import { reverse } from 'unch';
 
@@ -414,9 +418,8 @@ const reversedArray = reverse(originalArray);
 // reversedArray == [5, 4, 3, 2, 1]
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks
-
 // Simple Arrays (length: 500, strings and numbers)
 Unch:   540,601 ops/sec ±0.61%
 Lodash:  28,195 ops/sec ±0.29%
@@ -436,24 +439,24 @@ Ramda:    214 ops/sec ±00.20%
 
 Remove all top level falsey values of input Array.
 
+**Params:**
 ```ts
-params:
-  arr: Array<T>  // Initial Array
+   arr: Array<T> // Initial Array
 
 return: Array<T> // Compacted Array
 ```
 
+**Use:**
 ```ts
 import { compact } from 'unch';
 
-const originalArray = [0, 1, null, 'test', '', 3, undefined, 3, 4];
+const originalArray = [0, 1, null, 'example', '', 3, undefined, 3, 4];
 const reversedArray = reverse(originalArray);
-// reversedArray == [1, 'test', 3, 3, 4]
+// reversedArray == [1, 'example', 3, 3, 4]
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks
-
 // Simple Arrays (length: 500, strings and numbers)
 Unch:   226,116 ops/sec ±0.69%
 Lodash: 173,346 ops/sec ±0.49%
@@ -469,61 +472,43 @@ Ramda:    170 ops/sec ±0.28%
 
 ---
 
-### `spliceExtract`
+### `splice`
 
-Extract an array of elements from the input array.
+Changes the contents of an array by removing or replacing existing elements and/or adding new elements in place, same as **[Vanilla JS Splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)** but it returns a  **Tuple** with the first element being the updated array and the second being the extracted array.
 
+**Params:**
 ```ts
-params:
-  arr: Array<T>        // Initial Array
-  start: number        // Index where extraction starts
-  extractCount: number // Number of fields to extract (optional)
+  arr: Array<T>          // Initial Array
+  props: {
+    start: number        // Index where update starts
+    deleteCoumt?: number // Number of fields to delete (optional)
+    items?: Array<U>     // Items to insert (optional)
+  }
 
-return: Array<T>       // Extracted Array
+return: [
+  [0]: Array<T | U>,     // Updated Array
+  [1]: Array<T>[]        // Extracted Array
+]
 ```
 
+**Use:**
 ```ts
-import { spliceExtract } from 'unch';
+import { splice } from 'unch';
 
 const originalArray = [1, 2, 3, 4, 5, 6, 7];
 
-const extractedArray = spliceExtract(originalArray, 2, 3);
+const [updatedArray, extractedArray] = splice(originalArray, {
+  start: 2,
+  deleteCount: 3,
+  items: [88, 99]
+});
+// updatedArray == [1, 2, 88, 99, 6, 7]
 // extractedArray == [3, 4, 5]
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks (no equivalents)
-```
-
-[⇧ back to top](#table-of-contents)
-
----
-
-### `spliceInsert`
-
-Changes the contents of an array by removing or replacing existing elements and/or adding new elements in place, same as **[Vanilla JS Splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)** but it returns the updated Array instead.
-
-```ts
-params:
-  arr: Array<T>        // Initial Array
-  start: number        // Index where update starts
-  deleteCoumt?: number // Number of fields to delete (optional)
-  ...items: <U>        // Items to insert (optional)
-
-return: Array<T | U>   // Updated Array
-```
-
-```ts
-import { spliceInsert } from 'unch';
-
-const originalArray = [1, 2, 3, 4, 5, 6, 7];
-
-const updatedArray = spliceInsert(originalArray, 2, 3, 88, 99);
-// updatedArray == [1, 2, 88, 99, 6, 7]
-```
-
-```ts
-//Benchmarks (no equivalents)
+(no equivalents)
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -532,27 +517,32 @@ const updatedArray = spliceInsert(originalArray, 2, 3, 88, 99);
 
 Insert Item in Array in an especific index;
 
+**Params:**
 ```ts
-params:
   arr: Array<T>      // Initial Array
-  index: number      // Index place new Item
-  item: <U>          // Item to insert
+  props: {
+    index: number,   // Index place new Item
+    item: <U>        // Item to insert
+  }
 
 return: Array<T | U> // Updated Array
 ```
 
+**Use:**
 ```ts
 import { insert } from 'unch';
 
 const originalArray = [1, 2, 3, 4];
 
-const updatedArray = spliceInsert(originalArray, 1, 'New Item');
+const updatedArray = splice(originalArray, {
+  index: 1,
+  item: 'New Item'
+});
 // updatedArray == [1, 'New Item', 2, 3, 4]
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks
-
 // Simple Arrays (length: 500, strings and numbers)
 Unch:   421,675 ops/sec ±0.47%
 Lodash: 161,942 ops/sec ±0.56%
@@ -576,13 +566,14 @@ Ramda:    208 ops/sec ±0.50%
 
 Deep clone the input Object.
 
+**Params:**
 ```ts
-params:
-  obj:  <T> // Initial Object
+   obj: <T> // Initial Object
 
 return: <T> // Cloned Object
 ```
 
+**Use:**
 ```ts
 import { cloneObject } from 'unch';
 
@@ -594,17 +585,15 @@ const originalObject = {
 const clonedObject = cloneObject(originalObject);
 
 // Expect:
-clonedObject ==
-  {
-    name: 'John Doe',
-    age: 29,
-    job: 'Developer',
-  };
+clonedObject == {
+  name: 'John Doe',
+  age: 29,
+  job: 'Developer',
+};
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks
-
 Unch:   159,130 ops/sec ±0.27%
 Lodash:  33,683 ops/sec ±1.11%
 Ramda:   21,111 ops/sec ±0.96%
@@ -618,14 +607,15 @@ Ramda:   21,111 ops/sec ±0.96%
 
 Assign new fields to an Object.
 
+**Params:**
 ```ts
-params:
-  obj:  <T>            // Initial Object
-  fieldsToAssign:  <U> // New Fields
+           obj:  <T> // Initial Object
+fieldsToAssign:  <U> // New Fields
 
-return: <T> // Updated Object
+        return:  <T> // Updated Object
 ```
 
+**Use:**
 ```ts
 import { assignObj } from 'unch';
 
@@ -641,18 +631,17 @@ const updatedObject = assignObj(originalObject, {
 });
 
 // Expect:
-updatedObject ==
-  {
-    name: 'John Doe',
-    age: 29,
-    job: 'Developer',
-    isAwesome: true,
-    favouriteFood: 'sushi',
-  };
+updatedObject == {
+  name: 'John Doe',
+  age: 29,
+  job: 'Developer',
+  isAwesome: true,
+  favouriteFood: 'sushi',
+};
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks
 
 Unch:   148,622 ops/sec ±0.26%
 Lodash:  33,692 ops/sec ±0.39%
@@ -666,14 +655,15 @@ Lodash:  33,692 ops/sec ±0.39%
 
 Assign new fields to an Object.
 
+**Params:**
 ```ts
-params:
-  obj: <T>            // Initial Object
-  fieldsToUpdate: <U> // Fields to Update
+           obj: <T> // Initial Object
+fieldsToUpdate: <U> // Fields to Update
 
-return: <T> // Updated Object
+        return: <T> // Updated Object
 ```
 
+**Use:**
 ```ts
 import { updateObj } from 'unch';
 
@@ -697,9 +687,8 @@ updatedObject ==
   };
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks
-
 Unch:   150,946 ops/sec ±0.24%
 Lodash:  20,931 ops/sec ±0.40%
 Ramda:   33,662 ops/sec ±0.45%
@@ -713,14 +702,15 @@ Ramda:   33,662 ops/sec ±0.45%
 
 Filter keys from an Object.
 
+**Params:**
 ```ts
-params:
-  obj: <T>                  // Initial Object
-  filterKeys: Array<string> // Keys to filter
+       obj: <T>           // Initial Object
+filterKeys: Array<string> // Keys to filter
 
-return: <T> // Filtered Object
+    return: <T>           // Filtered Object
 ```
 
+**Use:**
 ```ts
 import { updateObj } from 'unch';
 
@@ -735,15 +725,15 @@ const originalObject = {
 const filteredObject = filterObjKeys(originalObject, ['name', 'age']);
 
 // Expect:
-filteredObject ==
-  {
-    name: 'John Doe',
-    age: 29,
-  };
+filteredObject == {
+  name: 'John Doe',
+  age: 29,
+};
 ```
 
+**Benchmarks:**
 ```ts
-//Benchmarks (no equivalents)
+(no equivalents)
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -754,14 +744,15 @@ filteredObject ==
 
 Remove keys from an Object.
 
+**Params:**
 ```ts
-params:
-  obj: <T>                  // Initial Object
-  removeKeys: Array<string> // Keys to remove
+       obj: <T>           // Initial Object
+removeKeys: Array<string> // Keys to remove
 
-return: <T> // Updated Object
+    return: <T>           // Updated Object
 ```
 
+**Use:**
 ```ts
 import { updateObj } from 'unch';
 
@@ -776,14 +767,14 @@ const originalObject = {
 const updatedObject = deleteObjKeys(originalObject, ['name', 'age']);
 
 // Expect:
-updatedObject ==
-  {
-    job: 'Developer',
-    isAwesome: true,
-    favouriteFood: 'sushi',
-  };
+updatedObject == {
+  job: 'Developer',
+  isAwesome: true,
+  favouriteFood: 'sushi',
+};
 ```
 
+**Benchmarks:**
 ```ts
 //Benchmarks (no equivalents)
 ```

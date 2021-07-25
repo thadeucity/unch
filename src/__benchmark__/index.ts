@@ -2,7 +2,6 @@
 import Benchmark from 'benchmark';
 import R from 'ramda';
 import * as _ from 'lodash';
-import { clone } from 'underscore';
 
 import {
   generateRandomArray,
@@ -12,21 +11,21 @@ import {
   generateRandomUserArray,
 } from './utils';
 
-import {
-  cloneArray,
-  first,
-  last,
-  push,
-  insert,
-  unshift,
-  reverse,
-  sort,
-  compact,
-  immutablePop,
-  immutableShift,
-} from '../arrayFunctions';
+import { cloneArray } from '../arrayFunctions/cloneArray';
+import { compact } from '../arrayFunctions/compact';
+import { getFirst } from '../arrayFunctions/getFirst';
+import { getLast } from '../arrayFunctions/getLast';
+import { insert } from '../arrayFunctions/insert';
+import { push } from '../arrayFunctions/push';
+import { reverse } from '../arrayFunctions/reverse';
+import { sort } from '../arrayFunctions/sort';
+import { unshift } from '../arrayFunctions/unshift';
+import { shift } from '../arrayFunctions/shift';
+import { pop } from '../arrayFunctions/pop';
 
-import { cloneObject, updateObj, assignObj } from '../objectFunctions';
+import { cloneObject } from '../objectFunctions/cloneObject';
+import { assignObj } from '../objectFunctions/assignObj';
+import { updateObj } from '../objectFunctions/updateObj';
 
 const runCloneBenchmarks = () => {
   const cloneShortArrayBenchmark = new Benchmark.Suite();
@@ -98,7 +97,7 @@ const runGetFirstBenchmark = () => {
   const randomArray = generateRandomArray(500);
   getFirstBenchmark
     .add('Unch', () => {
-      first(randomArray);
+      getFirst(randomArray);
     })
     .add('Ramda', () => {
       R.clone(randomArray[0]);
@@ -122,7 +121,7 @@ const runGetLastBenchmark = () => {
   const randomArray = generateRandomArray(500);
   getLastBenchmark
     .add('Unch', () => {
-      last(randomArray);
+      getLast(randomArray);
     })
     .add('Ramda', () => {
       R.clone(randomArray[randomArray.length - 1]);
@@ -213,7 +212,10 @@ const runInsertBenchmarks = () => {
   console.log('\n Start Simple Insert');
   const randomArray = generateRandomArray(500);
   simpleInsertBenchmarks
-    .add('Unch', () => insert(randomArray, 5, 'Pushed Element'))
+    .add('Unch', () => insert(randomArray, {
+      index: 5,
+      item: 'Pushed Element'
+    }))
     .add('Ramda', () => R.insert(5, 'Pushed Element', randomArray))
     .add('Lodash', () => {
       _.clone([
@@ -233,7 +235,10 @@ const runInsertBenchmarks = () => {
   const randomComplexArray = generateRandomObjectArray(500);
   const itemToPush = randomComplexArray[0];
   complexInsertBenchmarks
-    .add('Unch', () => insert(randomComplexArray, 5, itemToPush))
+    .add('Unch', () => insert(randomComplexArray, {
+      index: 5,
+      item: itemToPush
+    }))
     .add('Ramda', () =>
       R.insert(5, R.clone(itemToPush), R.clone(randomComplexArray) as any),
     )
@@ -351,7 +356,7 @@ const runPopBenchmarks = () => {
   const simpleArrayPopBenchmarks = new Benchmark.Suite();
   const randomArray = generateRandomArray(500);
   simpleArrayPopBenchmarks
-    .add('Unch', () => immutablePop(randomArray))
+    .add('Unch', () => pop(randomArray))
     .add('Ramda', () => {
       return [
         R.remove(randomArray.length - 1, 1, randomArray),
@@ -373,7 +378,7 @@ const runPopBenchmarks = () => {
   const complexArrayPopBenchmarks = new Benchmark.Suite();
   const randomObjectArray = generateRandomObjectArray(500);
   complexArrayPopBenchmarks
-    .add('Unch', () => immutablePop(randomObjectArray))
+    .add('Unch', () => pop(randomObjectArray))
     .add('Ramda', () => {
       const clonedRamdaArray = R.clone(randomObjectArray);
       return [
@@ -400,7 +405,7 @@ const runShiftBenchmarks = () => {
   const simpleArrayShiftBenchmarks = new Benchmark.Suite();
   const randomArray = generateRandomArray(500);
   simpleArrayShiftBenchmarks
-    .add('Unch', () => immutableShift(randomArray))
+    .add('Unch', () => shift(randomArray))
     .add('Ramda', () => {
       return [R.clone(randomArray[0]), R.remove(0, 1, randomArray)];
     })
@@ -416,7 +421,7 @@ const runShiftBenchmarks = () => {
   const complexArrayShiftBenchmarks = new Benchmark.Suite();
   const randomObjectArray = generateRandomObjectArray(500);
   complexArrayShiftBenchmarks
-    .add('Unch', () => immutableShift(randomObjectArray))
+    .add('Unch', () => shift(randomObjectArray))
     .add('Ramda', () => {
       const clonedRamdaArray = R.clone(randomObjectArray);
       return [clonedRamdaArray[0], R.remove(0, 1, clonedRamdaArray)];
