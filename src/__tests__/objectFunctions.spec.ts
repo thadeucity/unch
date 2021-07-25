@@ -1,10 +1,8 @@
-import {
-  cloneObject,
-  updateObj,
-  assignObj,
-  deleteObjKeys,
-  filterObjKeys,
-} from '../objectFunctions';
+import { cloneObject } from '../objectFunctions/cloneObject';
+import { assignObj } from '../objectFunctions/assignObj';
+import { deleteObjKeys } from '../objectFunctions/deleteObjKeys';
+import { filterObjKeys } from '../objectFunctions/filterObjKeys';
+import { updateObj } from '../objectFunctions/updateObj';
 
 describe('Test Object Functions', () => {
   describe('> cloneObject', () => {

@@ -19,10 +19,8 @@ export * from './arrayFunctions/splice';
 export * from './arrayFunctions/unshift';
 
 // Object Functions
-export {
-  cloneObject,
-  assignObj,
-  updateObj,
-  filterObjKeys,
-  deleteObjKeys,
-} from './objectFunctions';
+export * from './objectFunctions/cloneObject';
+export * from './objectFunctions/assignObj';
+export * from './objectFunctions/deleteObjKeys';
+export * from './objectFunctions/filterObjKeys';
+export * from './objectFunctions/updateObj';
