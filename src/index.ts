@@ -24,3 +24,7 @@ export * from './objectFunctions/assignObj';
 export * from './objectFunctions/deleteObjKeys';
 export * from './objectFunctions/filterObjKeys';
 export * from './objectFunctions/updateObj';
+
+// Fn Functions
+export * from './fnFunctions/pipe';
+export * from './fnFunctions/compose';

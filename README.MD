@@ -2,7 +2,7 @@
 
 # unch
 
-Collection of fast and lightweight utilities to handle arrays and objects with immutability in mind.
+Collection of fast and lightweight utilities for functional programing.
 
 [![Dependency Status](https://img.shields.io/david/thadeucity/unch.svg)](https://github.com/thadeucity/unch)
 
@@ -18,7 +18,7 @@ Collection of fast and lightweight utilities to handle arrays and objects with i
 
 ### **What's new?**
 
-:tada: First Major release - VERSION 1.0.0 :tada:
+:tada: Pipe and Compose Functions
 
 <hr/><br/>
 
@@ -26,7 +26,7 @@ Collection of fast and lightweight utilities to handle arrays and objects with i
 
 ## Features
 
-- Providing a set of [functions](#table-of-contents) for handling arrays and objects with full immutality.
+- Providing a set of [functions](#table-of-contents) for functional programing with full imutability.
 
 ## Goals
 
@@ -100,6 +100,11 @@ I am open for contributions. If you're planning to contribute please make sure t
 - [`updateObj`](#updateObj)
 - [`filterObjKeys`](#filterObjKeys)
 - [`deleteObjKeys`](#deleteObjKeys)
+
+## General Functions
+
+- [`pipe`](#pipe)
+- [`compose`](#compose)
 
 ---
 
@@ -777,6 +782,60 @@ updatedObject == {
 **Benchmarks:**
 ```ts
 //Benchmarks (no equivalents)
+```
+
+[⇧ back to top](#table-of-contents)
+
+---
+### `pipe`
+
+Create Pipe function.
+
+**Use:**
+```ts
+import { pipe } from 'unch';
+
+const add = (a: number) => (b: number) => b + a;
+const multiplyBy = (a: number) => (b: number) => b * a;
+const parseResult = (a: number) => `Result: ${a}`;
+
+const myPipe = pipe
+  .f(add(2))
+  .f(multiplyBy(4))
+  .f(parseResult)
+  .build();
+
+const result = myPipe(5);
+
+// Expect:
+result == 'Result: 28';
+```
+
+[⇧ back to top](#table-of-contents)
+
+---
+### `compose`
+
+Create Compose function.
+
+**Use:**
+```ts
+import { compose } from 'unch';
+
+const add = (a: number) => (b: number) => b + a;
+const multiplyBy = (a: number) => (b: number) => b * a;
+const parseResult = (a: number) => `Result: ${a}`;
+
+const myCompose = compose
+  .f(parseResult)
+  .f(multiplyBy(4))
+  .f(add(5))
+  .build();
+
+const result = myCompose(5);
+
+// Expect:
+result == 'Result: 40';
 ```
 
 [⇧ back to top](#table-of-contents)
