@@ -1,6 +1,6 @@
 {
   "name": "unch",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Victor Alvarenga",
   "license": "MIT",
   "main": "lib/index.js",
